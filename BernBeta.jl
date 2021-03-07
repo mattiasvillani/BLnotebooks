@@ -15,6 +15,7 @@ end
 
 # ╔═╡ 3f3dbc34-3593-11eb-2250-13fc496e403e
 begin
+	import Pkg; Pkg.add("LaTeXStrings")
 	using Plots, LaTeXStrings, PlutoUI
 	import Distributions: Beta, pdf
 	import ColorSchemes.Paired_12;
