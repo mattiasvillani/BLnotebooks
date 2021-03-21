@@ -15,8 +15,8 @@ end
 
 # ╔═╡ 3f3dbc34-3593-11eb-2250-13fc496e403e
 begin
-	import Pkg; Pkg.add.(["LaTeXStrings", "PlutoUI", "Distributions", "ColorSchemes"])
-	using Plots, LaTeXStrings, PlutoUI
+	import Pkg; Pkg.add.(["LaTeXStrings", "PlutoUI", "Distributions", "ColorSchemes", "Measures"])
+	using Plots, LaTeXStrings, PlutoUI, Measures
 	import Distributions: Beta, pdf
 	import ColorSchemes.Paired_12;
 	colors = Paired_12[[1,2,7,8,3,4,5,6,9,10]]
@@ -80,17 +80,16 @@ end;
 
 # ╔═╡ ca4114a4-3591-11eb-1777-4593b8760a68
 begin
-	# using Pkg
-	# Pkg.build("GR")
 	f = n - s
 	θGrid = range(eps(),1-eps(), length = 1000)
 	binWidth = θGrid[2]-θGrid[1]
 	logℓ = s*log.(θGrid) .+ f*log.(1 .- θGrid)
 	like = exp.(logℓ .- maximum(logℓ))
 	normLike = like/(sum(like)*binWidth)
-	plot(θGrid, pdf.(Beta(α,β),θGrid), lw = 3, color = colors[6], xlabel = L"\theta", label = "Prior", yaxis = false)
-	plot!(θGrid, normLike, lw = 3, color = colors[2], label = "Likelihood")
-	plot!(θGrid, pdf.(Beta(αPost,βPost),θGrid), lw = 3, color = colors[4], label = "Posterior")
+	plot(size = (1200,800), θGrid, pdf.(Beta(α,β),θGrid), lw = 10, color = colors[6], 
+		xlabel = L"\theta", label = "Prior", yaxis = false, margin = 5mm)
+	plot!(θGrid, normLike, lw = 10, color = colors[2], label = "Likelihood")
+	plot!(θGrid, pdf.(Beta(αPost,βPost),θGrid), lw = 10, color = colors[4], label = "Posterior")
 end
 
 # ╔═╡ 7cdb3f2c-358d-11eb-03e6-df23873fb7b4
