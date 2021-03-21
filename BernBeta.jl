@@ -20,6 +20,10 @@ begin
 	import Distributions: Beta, pdf
 	import ColorSchemes.Paired_12;
 	colors = Paired_12[[1,2,7,8,3,4,5,6,9,10]]
+	Plots.default()
+	gr(legend = nothing, grid = false, color = colors[2], lw = 10, legendfontsize=20,
+    		xtickfontsize=20, ytickfontsize=20, xguidefontsize=20, yguidefontsize=20, 
+		titlefontsize = 20)
 	nothing
 end
 
